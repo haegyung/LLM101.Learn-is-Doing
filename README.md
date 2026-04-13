@@ -8,6 +8,11 @@
 - 완벽한 결과보다 작은 성공 경험을 먼저 만듭니다.
 - 예제 Skill과 command를 그대로 한 번 실행한 뒤, 자기 작업에 맞게 고칩니다.
 
+중요:
+- 이 스타터팩은 `Gemini`와 `ChatGPT Codex`가 섞여 정리된 프로젝트입니다.
+- 그래서 이 폴더를 그대로 열었을 때 어디까지가 Gemini 기준 정본인지 헷갈릴 수 있습니다.
+- 따라서 Gemini 사용자는 이 스타터팩을 자기 프로젝트 폴더로 `import`한 뒤에만 실행합니다.
+
 ## 0. 이 폴더 안에 무엇이 있나
 
 - `GEMINI.md`
@@ -163,9 +168,10 @@ outputs/
 notes/
 ```
 
-## 5. Gemini CLI에서 바로 실행하기
+## 5. Gemini CLI에서는 반드시 import 후 실행하기
 
-이 폴더는 기본적으로 `Gemini CLI` 기준으로 준비되어 있습니다.
+이 스타터팩은 참고용 원본 폴더입니다.  
+Gemini 사용자는 이 폴더를 작업 폴더로 직접 쓰지 말고, 자기 프로젝트 폴더로 필요한 파일을 복사한 뒤 실행합니다.
 
 ### 5-1. Gemini CLI 설치
 
@@ -191,16 +197,84 @@ npm install -g @google/gemini-cli
 gemini --version
 ```
 
-### 5-2. 워크숍 폴더에서 Gemini 실행
+### 5-2. 왜 import가 필요한가
+
+이 프로젝트는 `Gemini`와 `ChatGPT Codex`가 섞여 정리됐기 때문에, 원본 폴더를 그대로 열면 아래가 불분명할 수 있습니다.
+- 어떤 규칙이 Gemini용인지
+- 어떤 문구가 Codex 작업 흔적인지
+- 어느 폴더를 실제 작업 공간으로 써야 하는지
+
+그래서 Gemini 쪽에서는 원칙을 단순하게 잡습니다.
+- 원본 `homework` 폴더는 스타터팩 저장소로 둡니다.
+- 실제 작업은 항상 별도 프로젝트 폴더에서 합니다.
+- 그 프로젝트 폴더에 `GEMINI.md`, `.gemini/skills`, `.gemini/commands`를 import하고 reload해서 씁니다.
+
+### 5-3. Gemini 프로젝트 폴더 만들기
+
+새 폴더를 하나 만듭니다.
 
 ```bash
-cd /path/to/homework
+mkdir -p ~/my-gemini-writing-project
+cd ~/my-gemini-writing-project
+```
+
+기존 프로젝트에 붙일 때는 그 프로젝트 루트로 이동하면 됩니다.
+
+### 5-4. 스타터팩을 Gemini 프로젝트로 import 하기
+
+가장 중요한 복사 대상은 아래 3개입니다.
+- `GEMINI.md`
+- `.gemini/skills/`
+- `.gemini/commands/`
+
+같이 가져가면 좋은 폴더:
+- `outputs/`
+- `notes/`
+
+macOS / Linux 예시:
+
+```bash
+mkdir -p ~/my-gemini-writing-project/.gemini
+mkdir -p ~/my-gemini-writing-project/outputs
+mkdir -p ~/my-gemini-writing-project/notes
+
+cp /path/to/homework/GEMINI.md ~/my-gemini-writing-project/
+cp -R /path/to/homework/.gemini/skills ~/my-gemini-writing-project/.gemini/
+cp -R /path/to/homework/.gemini/commands ~/my-gemini-writing-project/.gemini/
+touch ~/my-gemini-writing-project/outputs/.gitkeep
+touch ~/my-gemini-writing-project/notes/.gitkeep
+```
+
+Windows PowerShell 예시:
+
+```powershell
+New-Item -ItemType Directory -Force -Path .\my-gemini-writing-project\.gemini | Out-Null
+New-Item -ItemType Directory -Force -Path .\my-gemini-writing-project\outputs | Out-Null
+New-Item -ItemType Directory -Force -Path .\my-gemini-writing-project\notes | Out-Null
+
+Copy-Item .\GEMINI.md .\my-gemini-writing-project\
+Copy-Item .\.gemini\skills .\my-gemini-writing-project\.gemini\ -Recurse
+Copy-Item .\.gemini\commands .\my-gemini-writing-project\.gemini\ -Recurse
+New-Item -ItemType File -Force -Path .\my-gemini-writing-project\outputs\.gitkeep | Out-Null
+New-Item -ItemType File -Force -Path .\my-gemini-writing-project\notes\.gitkeep | Out-Null
+```
+
+터미널이 익숙하지 않다면 파일 탐색기에서 아래만 직접 복사해도 됩니다.
+- `GEMINI.md`
+- `.gemini` 폴더 전체
+- `outputs` 폴더
+- `notes` 폴더
+
+### 5-5. import한 Gemini 프로젝트에서 실행
+
+```bash
+cd ~/my-gemini-writing-project
 gemini
 ```
 
 필요하면 개인 Google 계정으로 로그인합니다.
 
-### 5-3. 메모리와 예제 로드 확인
+### 5-6. 메모리와 예제 로드 확인
 
 Gemini 안에서 아래 순서대로 실행합니다.
 
@@ -228,7 +302,7 @@ Gemini 안에서 아래 순서대로 실행합니다.
 /commands reload
 ```
 
-### 5-4. 예제 command 실행
+### 5-7. 예제 command 실행
 
 이번 주 실제 작업 1개를 넣어 실행합니다.
 
@@ -248,7 +322,7 @@ Gemini 안에서 아래 순서대로 실행합니다.
 - `outputs/03_argument_map.md`
 - `outputs/04_draft.md`
 
-### 5-5. 초안 다듬기
+### 5-8. 초안 다듬기
 
 초안을 만든 뒤 아래를 실행합니다.
 
@@ -394,13 +468,15 @@ research -> organize -> analysis -> writing -> revise 흐름은 유지하고,
 
 1. Git 설치
 2. 워크숍 폴더 받기
-3. `homework` 폴더로 이동
-4. 이번 주 실제 과제 1개 고르기
-5. `Gemini CLI`에서 예제 command를 먼저 1회 실행
-6. `outputs/01~04` 중 가능한 만큼 저장
-7. `revise` 단계까지 1회 돌려보기
-8. 그 다음 자기 작업에 맞게 Skill 또는 command를 고치기
-9. 필요하면 Codex 또는 Claude Code로 같은 흐름을 옮기기
+3. `homework`는 원본 스타터팩으로만 두기
+4. 별도 Gemini 프로젝트 폴더 만들기
+5. `GEMINI.md`, `.gemini/skills`, `.gemini/commands`를 import 하기
+6. 이번 주 실제 과제 1개 고르기
+7. import한 프로젝트 폴더에서 `Gemini CLI`를 실행
+8. `outputs/01~04` 중 가능한 만큼 저장
+9. `revise` 단계까지 1회 돌려보기
+10. 그 다음 자기 작업에 맞게 Skill 또는 command를 고치기
+11. 필요하면 Codex 또는 Claude Code로 같은 흐름을 옮기기
 
 처음부터 모든 환경에 동시에 옮기지 않는 것이 좋습니다.  
 한 번은 Gemini에서 성공 경험을 만든 뒤, 그 성공 흐름을 다른 환경으로 가져가는 편이 훨씬 덜 막힙니다.
@@ -510,3 +586,6 @@ claude --version
 - [Gemini CLI](https://ol.vibeworkers.net/doc/gemini-cli-f1fusJo2rd)
 
 이 README는 위 문서들의 문구를 그대로 복사한 것이 아니라, 워크숍 시작용 폴더에 맞게 단계별 실행 가이드로 다시 정리한 버전입니다.
+
+추가 원칙:
+- 이 프로젝트는 `Gemini`와 `ChatGPT Codex`가 섞여 작업된 스타터팩이므로, Gemini 사용자는 원본 폴더를 직접 작업 공간으로 쓰지 않고 반드시 자기 프로젝트로 import해서 사용합니다.
