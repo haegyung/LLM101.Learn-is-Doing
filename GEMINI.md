@@ -22,11 +22,11 @@
 ## 파일 산출 규칙
 - 가능하면 outputs/ 폴더에 결과를 저장한다.
 - 파일명은 명확하게 한다.
-  - research.md
-  - outline.md
-  - analysis.md
-  - draft.md
-  - revision.md
+  - 01_research_plan.md
+  - 02_outline.md
+  - 03_argument_map.md
+  - 04_draft.md
+  - 05_polished_draft.md
 
 ## 스킬 사용 원칙
 - 필요한 경우에만 해당 스킬을 활성화한다.

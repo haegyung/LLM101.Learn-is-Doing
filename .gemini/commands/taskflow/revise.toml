@@ -1,0 +1,17 @@
+description = "draft를 기준으로 다듬는 예시 command"
+prompt = """
+대상 초안:
+@{outputs/04_draft.md}
+
+수정 요청: {{args}}
+
+revise-task를 우선 참고해 아래를 수행하라.
+1. 강점 3개
+2. 리스크 3개
+3. 구조 수정 제안
+4. 문장 수정 예시 10개
+5. 최종 체크리스트 10개
+
+가능하면 수정 반영본을 outputs/05_polished_draft.md 로 저장하라고 제안하라.
+마지막에 다음 10분 행동 3개를 제안하라.
+"""
