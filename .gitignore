@@ -1,1 +1,8 @@
 .DS_Store
+
+# Keep lesson starter templates clean; student outputs stay local.
+**/outputs/*.md
+**/notes/*.md
+
+!**/outputs/.gitkeep
+!**/notes/.gitkeep
