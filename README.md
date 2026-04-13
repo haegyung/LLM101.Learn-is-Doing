@@ -4,6 +4,7 @@
 
 현재 lesson:
 - [Lesson 1. 스킬을 활용해서 리서치부터 글쓰기까지](/Volumes/Extend/lecture-works/DKU/gemini/homework/LLM101.Learn-is-Doing/lessons/lesson-1-research-writing/README.md)
+- [Lesson 2. 예제 스킬과 command를 내 과제에 맞게 고쳐 쓰기](/Volumes/Extend/lecture-works/DKU/gemini/homework/LLM101.Learn-is-Doing/lessons/lesson-2-remix-skill-and-command/README.md)
 
 합본:
 - [COMBINED.md](/Volumes/Extend/lecture-works/DKU/gemini/homework/LLM101.Learn-is-Doing/COMBINED.md)

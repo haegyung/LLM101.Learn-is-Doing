@@ -1,0 +1,28 @@
+description = "기존 예제 Skill과 command를 자기 과제에 맞게 고쳐 쓰는 시작 command"
+prompt = """
+목표 작업: {{args}}
+
+이번 목표는 Lesson 1의 예제를 버리는 것이 아니라, 현재 작업에 맞게 최소 수정하는 것이다.
+가능하면 결과를 outputs/ 폴더에 저장하라.
+
+remix-task를 참고해 아래를 수행하라.
+
+1. 현재 작업을 1문장으로 다시 정리한다.
+2. Lesson 1 흐름과 안 맞는 지점 3개를 찾는다.
+3. 그대로 유지할 요소 3개를 찾는다.
+4. 새 Skill 초안을 제안한다.
+   - 이름
+   - 역할
+   - 언제 사용하나
+   - 출력 형식
+   - 주의
+   - outputs/02_skill_draft.md 저장 제안
+5. 새 command 초안을 제안한다.
+   - command 이름
+   - description
+   - prompt 구조
+   - outputs/03_command_draft.md 저장 제안
+6. 현재 mismatch 요약을 outputs/01_workflow_gap.md 로 저장하라고 제안한다.
+
+마지막에 다음 10분 행동 3개를 제안하라.
+"""

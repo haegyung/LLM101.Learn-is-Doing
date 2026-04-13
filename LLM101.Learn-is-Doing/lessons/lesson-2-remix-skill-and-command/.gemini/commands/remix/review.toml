@@ -1,0 +1,19 @@
+description = "draft 된 Skill과 command를 검토하고 테스트 프롬프트를 만드는 command"
+prompt = """
+대상 draft:
+@{outputs/02_skill_draft.md}
+@{outputs/03_command_draft.md}
+
+수정 요청: {{args}}
+
+remix-task를 참고해 아래를 수행하라.
+1. 강점 3개
+2. 과한 부분 3개
+3. 바로 실행 가능한 축약안
+4. 테스트 프롬프트 3개
+5. 저장 권장:
+   - outputs/04_test_prompt.md
+   - outputs/05_revision_notes.md
+
+마지막에 다음 10분 행동 3개를 제안하라.
+"""

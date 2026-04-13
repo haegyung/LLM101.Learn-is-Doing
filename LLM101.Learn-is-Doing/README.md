@@ -5,6 +5,7 @@
 
 현재 포함된 레슨:
 - [Lesson 1. 스킬을 활용해서 리서치부터 글쓰기까지](./lessons/lesson-1-research-writing/README.md)
+- [Lesson 2. 예제 스킬과 command를 내 과제에 맞게 고쳐 쓰기](./lessons/lesson-2-remix-skill-and-command/README.md)
 
 ## 0. 구조
 
@@ -15,6 +16,8 @@
 - 합본 생성 스크립트 SoT: `scripts/build_combined.sh`
 - lesson 1 본문 SoT: `lessons/lesson-1-research-writing/README.md`
 - lesson 1 runtime 규칙 SoT: `lessons/lesson-1-research-writing/GEMINI.md`
+- lesson 2 본문 SoT: `lessons/lesson-2-remix-skill-and-command/README.md`
+- lesson 2 runtime 규칙 SoT: `lessons/lesson-2-remix-skill-and-command/GEMINI.md`
 
 현재 폴더 구조:
 
@@ -26,7 +29,13 @@ LLM101.Learn-is-Doing/
 ├── scripts/
 │   └── build_combined.sh
 └── lessons/
-    └── lesson-1-research-writing/
+    ├── lesson-1-research-writing/
+    │   ├── README.md
+    │   ├── GEMINI.md
+    │   ├── .gemini/
+    │   ├── outputs/
+    │   └── notes/
+    └── lesson-2-remix-skill-and-command/
         ├── README.md
         ├── GEMINI.md
         ├── .gemini/
@@ -52,8 +61,9 @@ LLM101.Learn-is-Doing/
 6. `outputs/`에 결과 저장하기
 7. lesson 문서가 바뀌면 마지막에 `COMBINED.md` 갱신하기
 
-현재 시작 lesson:
+권장 진행 순서:
 - `lessons/lesson-1-research-writing/`
+- `lessons/lesson-2-remix-skill-and-command/`
 
 ## 3. Git 설치
 
@@ -167,10 +177,18 @@ gemini --version
 
 ### 5-2. import 대상
 
-현재 Lesson 1을 import할 때는 아래 lesson 폴더를 기준으로 합니다.
+원칙적으로는 필요한 lesson 폴더 하나만 import 합니다.
+
+처음 시작할 때:
 
 ```text
 LLM101.Learn-is-Doing/lessons/lesson-1-research-writing/
+```
+
+Lesson 1을 끝낸 뒤 예제 skill/command를 자기 과제에 맞게 바꿔보려면:
+
+```text
+LLM101.Learn-is-Doing/lessons/lesson-2-remix-skill-and-command/
 ```
 
 필수 복사 대상:
