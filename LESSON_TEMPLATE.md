@@ -34,6 +34,8 @@ lessons/lesson-n-topic/
 - 기준 문서는 `실행 순서`, `체크`, `수정 loop`를 설명하는 문서 1개로 고정한다.
 - lesson 본문은 기준 문서의 어느 단계들을 lesson 형태로 옮긴 것인지 적는다.
 - 사용자가 별도 과제를 지정하지 않으면 위 기본 연습 과제로 시작한다.
+- 프롬프트 설명이 필요하면 `상황 정보 + 선언적 지식 + 절차적 지식`을 구분하고, `출력 계약`은 선언적 지식의 닫기 단계로 적는다.
+- 현재 작업 폴더가 git repo 라면 lesson 시작 전에 local sync preflight를 먼저 안내한다.
 - `Codex`와 `Claude Code` 안내가 필요하더라도, workflow와 outputs 설명은 기준 문서를 중심으로 유지한다.
 
 ## 4. 이 lesson 폴더에서 실제로 쓰는 파일
@@ -61,18 +63,33 @@ lessons/lesson-n-topic/
 - `[비권장 예시 1]`
 - `[비권장 예시 2]`
 
-## 7. 실행하기
+## 7. 시작 전 preflight
+
+현재 lesson 자산이 git repo 안에 있다면 시작 전에 아래를 먼저 점검한다.
+
+```bash
+git status -sb
+git fetch origin
+git pull --ff-only
+```
+
+- working tree가 깨끗하지 않으면 pull 전에 현재 변경부터 정리한다고 적는다.
+- git repo가 아니라면 이 단계는 건너뛴다고 적는다.
+
+## 8. 실행하기
 
 ### 7-1. 공통 시작 요청
 
 ```text
-[이 lesson workflow를 사용해서 "[실제 작업 1개]"를 시작해줘.]
+[먼저 현재 작업 폴더가 git repo라면 local sync 필요 여부를 확인해줘.
+이 lesson workflow를 사용해서 "[실제 작업 1개]"를 시작해줘.]
 ```
 
 ### 7-2. 기본 연습 과제 요청
 
 ```text
-[이 lesson workflow를 사용해서 "[기본 연습 과제]"를 시작해줘.]
+[먼저 현재 작업 폴더가 git repo라면 local sync 필요 여부를 확인해줘.
+이 lesson workflow를 사용해서 "[기본 연습 과제]"를 시작해줘.]
 ```
 
 ### 7-3. 추천 산출물
@@ -101,10 +118,11 @@ lessons/lesson-n-topic/
 ### 7-6. 수정 요청
 
 ```text
-[이 lesson workflow를 사용해서 "[수정 예시]"를 다듬어줘.]
+[이 lesson workflow를 사용해서 "[수정 예시]"를 다듬어줘.
+필요하면 프롬프트를 상황 정보 / 선언적 지식 / 절차적 지식으로 다시 나눠줘.]
 ```
 
-## 8. 추천 실습 시나리오
+## 9. 추천 실습 시나리오
 
 ### 시나리오 0. 기본 연습 과제
 
@@ -124,7 +142,7 @@ lessons/lesson-n-topic/
 [이 lesson workflow를 사용해서 "[시나리오 B]"를 시작해줘.]
 ```
 
-## 9. 막힐 때 쓰는 문장
+## 10. 막힐 때 쓰는 문장
 
 ### 시작이 막힐 때
 
@@ -147,7 +165,7 @@ lessons/lesson-n-topic/
 [문장 2]
 ```
 
-## 10. 합본 갱신 규칙
+## 11. 합본 갱신 규칙
 
 lesson 문서를 수정한 뒤에는 course root에서 아래를 실행합니다.
 

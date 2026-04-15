@@ -8,6 +8,9 @@
 - [Lesson 1. 스킬을 활용해서 리서치부터 글쓰기까지](./lessons/lesson-1-research-writing/README.md)
 - [Lesson 2. Skill을 에이전트처럼 이해하고 내 과제에 맞게 remix하기](./lessons/lesson-2-remix-skill-and-command/README.md)
 
+워크숍 운영 문서:
+- [Workshop Materials](./workshop/README.md)
+
 프로젝트 정의:
 - [PROJECT_DEFINITION.md](./PROJECT_DEFINITION.md)
 
@@ -30,18 +33,21 @@
 - 기준은 `실제 작업 1개를 끝까지 굴리는 workflow` 입니다.
 - lesson 1은 기준 문서의 `GEMINI.md 작성 -> SKILL 5개 -> custom command 2개 -> 첫 실행 -> revise loop`를 lesson 자산으로 정리한 버전입니다.
 - lesson 2는 같은 흐름을 자기 과제에 맞게 최소 수정하되, skill을 `agent capability`로 읽는 extension 입니다.
+- lesson 2 이후의 코스 공통 기준은 `프롬프트에 상황 정보 + 선언적 지식 + 절차적 지식이 모두 있어야 한다`는 점을 명시하는 것입니다.
+- lesson 실행 전 현재 작업 폴더가 git repo 라면 `local sync`부터 점검하는 것을 기본 preflight로 둡니다.
 - `Gemini CLI`, `Codex`, `Claude Code`를 별도 커리큘럼으로 나누지 않고, 같은 workflow와 산출물 구조를 유지한 채 필요한 차이만 따로 안내합니다.
 - runtime별 skill 구조 차이는 `./knol/agent-skills/`의 공유 요약을 기준으로 통일합니다.
 
 ## 1. 가장 짧은 시작 순서
 
 1. 기준 학습 문서 [`tutorial-gemini-cli-student-workflow.md`](../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-student-workflow.md) 를 한 번 읽습니다.
-2. 이번 주에 실제로 해야 하는 작업 1개를 문장으로 적습니다.
-3. `lessons/lesson-1-research-writing/` 폴더를 현재 작업 환경으로 import 합니다.
-4. `GEMINI.md`, `.gemini/`, `outputs/`를 현재 환경 규약에 맞게 불러옵니다.
-5. `start` 단계에 해당하는 요청 1회를 실행합니다.
-6. `outputs/`에 결과를 남깁니다.
-7. 결과를 보고 `revise` 또는 `remix` 단계로 한 번 더 수정합니다.
+2. 현재 작업 폴더가 git repo 라면 `git status -sb`, `git fetch origin`, `git pull --ff-only` 순서로 local sync 가능 여부를 먼저 점검합니다.
+3. 이번 주에 실제로 해야 하는 작업 1개를 문장으로 적습니다.
+4. `lessons/lesson-1-research-writing/` 폴더를 현재 작업 환경으로 import 합니다.
+5. `GEMINI.md`, `.gemini/`, `outputs/`를 현재 환경 규약에 맞게 불러옵니다.
+6. `start` 단계에 해당하는 요청 1회를 실행합니다.
+7. `outputs/`에 결과를 남깁니다.
+8. 결과를 보고 `revise` 또는 `remix` 단계로 한 번 더 수정합니다.
 
 권장 진행 순서:
 - `lessons/lesson-1-research-writing/`
@@ -62,6 +68,7 @@
 ### Lesson 2
 
 - 목적: Lesson 1 예제를 버리지 않고 자기 과제에 맞게 최소 수정하되, skill을 `재사용 가능한 agent capability`로 이해합니다.
+- 추가 기준: 프롬프트를 `상황 정보 + 선언적 지식 + 절차적 지식`으로 분해해 보고, 시작 전에 git local sync를 먼저 점검합니다.
 - 기준 근거:
   - 기준 문서의 `9) 결과 수정 루프`
   - `10) 다음에 다시 쓸 때 기본 실행 패턴`
@@ -107,6 +114,8 @@
 - 산출물 구조는 같은 뜻을 유지합니다.
 - `GEMINI.md`의 규칙을 각 환경의 runtime 파일로 옮깁니다.
 - `.gemini` 자산은 각 환경의 skill / command 구조로 다시 만듭니다.
+- 현재 폴더가 git repo 라면 lesson 시작 전에 local sync 상태부터 확인합니다.
+- 프롬프트를 설명할 때는 `상황 정보`, `선언적 지식`, `절차적 지식`을 분리하고, `출력 계약`은 선언적 지식의 닫기 단계로 둡니다.
 
 필요할 때만 별도 안내:
 - `Codex`: `GEMINI.md` -> `AGENTS.md`

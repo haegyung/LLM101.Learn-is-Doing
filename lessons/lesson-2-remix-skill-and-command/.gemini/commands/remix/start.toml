@@ -8,6 +8,10 @@ prompt = """
 
 remix-task를 참고해 아래를 수행하라.
 
+0. 현재 작업 폴더가 git repo 라면 local sync 상태를 먼저 점검한다.
+   - branch / working tree / remote tracking 상태를 짧게 요약한다.
+   - working tree가 깨끗하면 `git fetch origin`, `git pull --ff-only` 같은 local sync 시도 여부를 제안한다.
+   - 로컬 변경이 있으면 pull 전에 정리가 필요하다고 명시한다.
 1. 현재 작업을 1문장으로 다시 정리한다.
 2. Lesson 1 흐름과 안 맞는 지점 3개를 찾는다.
 3. 그대로 유지할 요소 3개를 찾는다.
@@ -23,7 +27,8 @@ remix-task를 참고해 아래를 수행하라.
    - resources / references / assets
    - gotchas / guardrails
    - outputs/03_skill_draft.md 저장 제안
-7. 프롬프트를 선언적 지식 -> 절차적 지식 -> 선언적 지식으로 분해한다.
+7. 프롬프트를 `상황 정보 + 선언적 지식 + 절차적 지식`으로 분해한다.
+   - 상황 정보: 현재 과제, 기존 산출물 상태, repo/file/runtime, 현재 막힘
    - 앞 선언적 지식: 목표, 역할, 제약
    - 절차적 지식: 단계, 분기, 도구 사용
    - 뒤 선언적 지식: 출력 계약, 루브릭, 예시
