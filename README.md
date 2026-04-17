@@ -28,6 +28,12 @@ VibeWorkers OL 연동 문서:
 - [knol/agent-skills/skill-as-agent-shared-guide.md](./knol/agent-skills/skill-as-agent-shared-guide.md)
 - [knol/agent-skills/official-source-map.md](./knol/agent-skills/official-source-map.md)
 
+## 현재 반영된 핵심 업데이트
+
+- Lesson 2는 Lesson 1의 연속선으로 운영합니다. remix 실행 중 나온 기준선, 결정, 근거, 다음 행동은 `lessons/lesson-2-remix-skill-and-command/notes/progress-log.md`에 누적 기록합니다.
+- `knol/`은 lesson/runtime이 공통으로 참조하는 공유 지식 허브입니다. `knol/agent-skills/source-archive/`는 공식 원문 로컬 보존 계층이고, shared guide는 lesson이 직접 참조하는 요약/비교 기준입니다.
+- `ol/`은 VibeWorkers OL 브리지 정본입니다. `ol/manifest.tsv`, `ol/pages/*.md`, `scripts/validate_vibeworkers_ol.sh`를 같이 관리해 로컬 SoT와 OL surface 드리프트를 검증합니다.
+
 ## 0. 이 코스의 목적
 
 이 코스는 위 기준 문서의 학생 실습 흐름을 재사용 가능한 lesson 형태로 옮긴 것입니다.
@@ -94,6 +100,7 @@ VibeWorkers OL 연동 문서:
 
 - 목적: Lesson 1 예제를 버리지 않고 자기 과제에 맞게 최소 수정하되, skill을 `재사용 가능한 agent capability`로 이해하고 최종적으로 `orchestration-agent` skill 1개까지 만들어 봅니다.
 - 추가 기준: 프롬프트를 `상황 정보 + 선언적 지식 + 절차적 지식`으로 분해해 보고, 시작 전에 git local sync 가능 상태를 먼저 점검합니다. working tree가 깨끗하고 `origin`이 있을 때만 fetch/pull을 진행합니다.
+- 연속성 로그: Lesson 1에서 가져온 기준선과 Lesson 2의 remix 진행 흔적은 `lessons/lesson-2-remix-skill-and-command/notes/progress-log.md`를 정본으로 유지합니다.
 - 기준 근거:
   - 기준 문서의 `9) 결과 수정 루프`
   - `10) 다음에 다시 쓸 때 기본 실행 패턴`
@@ -159,11 +166,14 @@ VibeWorkers OL 연동 문서:
 - 합본 생성 스크립트 SoT: `scripts/build_combined.sh`
 - course 검증 SoT: `scripts/validate_course.sh`
 - OL 검증 SoT: `scripts/validate_vibeworkers_ol.sh`
+- knol 허브 SoT: `knol/README.md`
+- knol source archive SoT: `knol/agent-skills/source-archive/README.md`
 - quality gate SoT: `scripts/run_quality_gate.sh`
 - lesson 1 본문 SoT: `lessons/lesson-1-research-writing/README.md`
 - lesson 1 runtime 규칙 SoT: `lessons/lesson-1-research-writing/GEMINI.md`
 - lesson 2 본문 SoT: `lessons/lesson-2-remix-skill-and-command/README.md`
 - lesson 2 runtime 규칙 SoT: `lessons/lesson-2-remix-skill-and-command/GEMINI.md`
+- lesson 2 진행 로그 SoT: `lessons/lesson-2-remix-skill-and-command/notes/progress-log.md`
 - 기준 학습 문서 SoT: `../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-student-workflow.md`
 - shared agent-skills guide SoT: `knol/agent-skills/skill-as-agent-shared-guide.md`
 - workshop publishable SoT: `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md`

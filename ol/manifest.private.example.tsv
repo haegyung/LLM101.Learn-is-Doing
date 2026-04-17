@@ -1,0 +1,5 @@
+page_key	doc_id	url_id	collection_id	parent_doc_id
+lesson-hub	<lesson-hub-doc-id>	<lesson-hub-url-id>	<collection-id>	-
+lesson-1	<lesson-1-doc-id>	<lesson-1-url-id>	<collection-id>	<lesson-hub-doc-id>
+lesson-2	<lesson-2-doc-id>	<lesson-2-url-id>	<collection-id>	<lesson-hub-doc-id>
+workshop-90min-15	<workshop-doc-id>	<workshop-url-id>	<collection-id>	<lesson-hub-doc-id>

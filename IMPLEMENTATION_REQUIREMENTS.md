@@ -33,10 +33,11 @@
 
 6. VibeWorkers OL 연동 정본이 존재하고 인벤토리/계약/상위 문서 매핑이 유효하다.
 - 대상: `ol/README.md`, `ol/manifest.tsv`, `ol/pages/*.md`
-- 조건 A: manifest header가 예상 스키마와 같아야 한다.
-- 조건 B: `page_key`, `doc_id`, `url_id`는 중복되면 안 된다.
+- 조건 A: 공개 manifest header가 예상 스키마와 같아야 한다.
+- 조건 B: `page_key`는 중복되면 안 된다.
 - 조건 C: `parent_key`는 manifest 내부에서 해석 가능해야 한다.
 - 조건 D: 각 `ol_source_file`, `upstream_paths`는 실제 로컬 경로와 연결되어야 한다.
+- 조건 E: 운영용 메타(비공개)는 `.ops/ol/manifest.private.tsv`에서 관리되며 공개 manifest와 키 커버리지를 유지해야 한다.
 - Evidence: `scripts/validate_vibeworkers_ol.sh`
 
 7. `COMBINED.md`가 현재 소스 기준으로 최신이며 결정적으로 재생성되고, quality gate가 직접 파일을 다시 쓰지 않는다.

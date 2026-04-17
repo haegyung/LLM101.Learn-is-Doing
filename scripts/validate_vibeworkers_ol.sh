@@ -3,6 +3,8 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MANIFEST="$ROOT_DIR/ol/manifest.tsv"
+PRIVATE_MANIFEST="$ROOT_DIR/.ops/ol/manifest.private.tsv"
+PRIVATE_MANIFEST_TEMPLATE="$ROOT_DIR/ol/manifest.private.example.tsv"
 PASS_COUNT=0
 FAIL_COUNT=0
 WARN_COUNT=0
@@ -22,7 +24,8 @@ warn() {
   WARN_COUNT=$((WARN_COUNT + 1))
 }
 
-expected_header=$'page_key\tdoc_id\turl_id\ttitle\tparent_key\tcollection_id\tcollection_name\tol_source_file\tupstream_paths'
+EXPECTED_PUBLIC_HEADER=$'page_key\ttitle\tparent_key\tcollection_name\tol_source_file\tupstream_paths'
+EXPECTED_PRIVATE_HEADER=$'page_key\tdoc_id\turl_id\tcollection_id\tparent_doc_id'
 
 echo "== Validate Vibeworkers OL manifest =="
 if [[ -f "$MANIFEST" ]]; then
@@ -31,20 +34,69 @@ else
   fail "missing manifest: ol/manifest.tsv"
 fi
 
-if [[ -f "$MANIFEST" ]]; then
-  IFS= read -r header <"$MANIFEST" || header=""
-  if [[ "$header" == "$expected_header" ]]; then
-    pass "manifest header matches expected schema"
+if [[ -f "$PRIVATE_MANIFEST" ]]; then
+  pass "private manifest exists: .ops/ol/manifest.private.tsv"
+else
+  if [[ -f "$PRIVATE_MANIFEST_TEMPLATE" ]]; then
+    warn "private manifest missing: .ops/ol/manifest.private.tsv (bootstrap with ol/manifest.private.example.tsv)"
   else
-    fail "manifest header does not match expected schema"
+    warn "private manifest missing: .ops/ol/manifest.private.tsv (no bootstrap template found at ol/manifest.private.example.tsv)"
   fi
 fi
 
+if git -C "$ROOT_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  if git -C "$ROOT_DIR" check-ignore -q "$PRIVATE_MANIFEST"; then
+    pass "private manifest path is gitignored: .ops/ol/manifest.private.tsv"
+  else
+    warn "private manifest path is not covered by .gitignore: .ops/ol/manifest.private.tsv"
+  fi
+
+  if [[ -f "$PRIVATE_MANIFEST" ]]; then
+    if git -C "$ROOT_DIR" ls-files --error-unmatch .ops/ol/manifest.private.tsv >/dev/null 2>&1; then
+      fail "private manifest is tracked in git: .ops/ol/manifest.private.tsv"
+    else
+      pass "private manifest is intentionally untracked"
+    fi
+  fi
+fi
+
+if [[ -f "$MANIFEST" ]]; then
+  IFS= read -r header <"$MANIFEST" || header=""
+  if [[ "$header" == "$EXPECTED_PUBLIC_HEADER" ]]; then
+    pass "public manifest header matches expected schema"
+  else
+    fail "public manifest header does not match expected schema"
+  fi
+fi
+
+if [[ -f "$PRIVATE_MANIFEST" ]]; then
+  IFS= read -r private_header <"$PRIVATE_MANIFEST" || private_header=""
+  if [[ "$private_header" == "$EXPECTED_PRIVATE_HEADER" ]]; then
+    pass "private manifest header matches expected schema"
+  else
+    fail "private manifest header does not match expected schema"
+  fi
+else
+  warn "private metadata validation skipped: .ops/ol/manifest.private.tsv not found"
+fi
+
+if [[ -f "$PRIVATE_MANIFEST_TEMPLATE" ]]; then
+  IFS= read -r template_header <"$PRIVATE_MANIFEST_TEMPLATE" || template_header=""
+  if [[ "$template_header" == "$EXPECTED_PRIVATE_HEADER" ]]; then
+    echo "[PASS][SHOULD] bootstrap template schema is valid: ol/manifest.private.example.tsv"
+  else
+    fail "bootstrap template schema is invalid: ol/manifest.private.example.tsv"
+  fi
+else
+  warn "bootstrap template missing: ol/manifest.private.example.tsv"
+fi
+
 TMP_KEYS="$(mktemp)"
-TMP_DOC_IDS="$(mktemp)"
-TMP_URL_IDS="$(mktemp)"
 TMP_PARENTS="$(mktemp)"
-trap 'rm -f "$TMP_KEYS" "$TMP_DOC_IDS" "$TMP_URL_IDS" "$TMP_PARENTS"' EXIT
+TMP_PRIV_KEYS="$(mktemp)"
+TMP_PRIV_DOC_IDS="$(mktemp)"
+TMP_PRIV_URL_IDS="$(mktemp)"
+trap 'rm -f "$TMP_KEYS" "$TMP_PARENTS" "$TMP_PRIV_KEYS" "$TMP_PRIV_DOC_IDS" "$TMP_PRIV_URL_IDS"' EXIT
 
 required_keys=(
   "lesson-hub"
@@ -54,10 +106,10 @@ required_keys=(
 )
 
 if [[ -f "$MANIFEST" ]]; then
-  while IFS=$'\t' read -r page_key doc_id url_id title parent_key collection_id collection_name ol_source_file upstream_paths; do
+  while IFS=$'\t' read -r page_key title parent_key collection_name ol_source_file upstream_paths; do
     [[ "$page_key" == "page_key" ]] && continue
 
-    if [[ -z "$page_key" || -z "$doc_id" || -z "$url_id" || -z "$title" || -z "$collection_id" || -z "$collection_name" || -z "$ol_source_file" ]]; then
+    if [[ -z "$page_key" || -z "$title" || -z "$parent_key" || -z "$collection_name" || -z "$ol_source_file" ]]; then
       fail "manifest row has empty required field: $page_key"
       continue
     fi
@@ -66,18 +118,6 @@ if [[ -f "$MANIFEST" ]]; then
       fail "duplicate page_key: $page_key"
     else
       printf '%s\n' "$page_key" >>"$TMP_KEYS"
-    fi
-
-    if grep -Fxq "$doc_id" "$TMP_DOC_IDS"; then
-      fail "duplicate doc_id: $doc_id"
-    else
-      printf '%s\n' "$doc_id" >>"$TMP_DOC_IDS"
-    fi
-
-    if grep -Fxq "$url_id" "$TMP_URL_IDS"; then
-      fail "duplicate url_id: $url_id"
-    else
-      printf '%s\n' "$url_id" >>"$TMP_URL_IDS"
     fi
 
     printf '%s\t%s\n' "$page_key" "$parent_key" >>"$TMP_PARENTS"
@@ -95,18 +135,6 @@ if [[ -f "$MANIFEST" ]]; then
       else
         warn "OL source file is not yet git-tracked: $ol_source_file"
       fi
-    fi
-
-    if grep -Fq "$doc_id" "$ROOT_DIR/$ol_source_file"; then
-      pass "OL source file records doc id: $ol_source_file"
-    else
-      fail "OL source file missing doc id metadata: $ol_source_file"
-    fi
-
-    if grep -Fq "$url_id" "$ROOT_DIR/$ol_source_file"; then
-      pass "OL source file records url id: $ol_source_file"
-    else
-      fail "OL source file missing url id metadata: $ol_source_file"
     fi
 
     if [[ "$upstream_paths" == "-" || -z "$upstream_paths" ]]; then
@@ -147,6 +175,65 @@ while IFS=$'\t' read -r page_key parent_key; do
 done <"$TMP_PARENTS"
 
 echo
+echo "== Validate private metadata =="
+if [[ -f "$PRIVATE_MANIFEST" ]]; then
+  while IFS=$'\t' read -r page_key doc_id url_id collection_id parent_doc_id; do
+    [[ "$page_key" == "page_key" ]] && continue
+
+    if [[ -z "$page_key" || -z "$doc_id" || -z "$url_id" || -z "$collection_id" || -z "$parent_doc_id" ]]; then
+      fail "private manifest row has empty required field: $page_key"
+      continue
+    fi
+
+    if grep -Fxq "$page_key" "$TMP_KEYS"; then
+      true
+    else
+      fail "private manifest has key not in public manifest: $page_key"
+      continue
+    fi
+
+    if grep -Fxq "$page_key" "$TMP_PRIV_KEYS"; then
+      fail "duplicate private page_key: $page_key"
+    else
+      printf '%s\n' "$page_key" >>"$TMP_PRIV_KEYS"
+    fi
+
+    if grep -Fxq "$doc_id" "$TMP_PRIV_DOC_IDS"; then
+      fail "duplicate private doc_id: $doc_id"
+    else
+      printf '%s\n' "$doc_id" >>"$TMP_PRIV_DOC_IDS"
+    fi
+
+    if grep -Fxq "$url_id" "$TMP_PRIV_URL_IDS"; then
+      fail "duplicate private url_id: $url_id"
+    else
+      printf '%s\n' "$url_id" >>"$TMP_PRIV_URL_IDS"
+    fi
+  done <"$PRIVATE_MANIFEST"
+
+  echo
+  echo "== Validate required key coverage =="
+  for required_key in "${required_keys[@]}"; do
+    if grep -Fxq "$required_key" "$TMP_PRIV_KEYS"; then
+      pass "required key has private metadata: $required_key"
+    else
+      fail "required key missing private metadata: $required_key"
+    fi
+  done
+
+  while IFS= read -r public_key; do
+    [[ -z "$public_key" ]] && continue
+    if grep -Fxq "$public_key" "$TMP_PRIV_KEYS"; then
+      pass "private manifest coverage exists for: $public_key"
+    else
+      fail "public key has no private metadata: $public_key"
+    fi
+  done <"$TMP_KEYS"
+else
+  warn "private metadata validation skipped: .ops/ol/manifest.private.tsv not found"
+fi
+
+echo
 echo "== Validate required inventory =="
 for required_key in "${required_keys[@]}"; do
   if grep -Fxq "$required_key" "$TMP_KEYS"; then
@@ -160,9 +247,9 @@ echo
 echo "== SHOULD checks =="
 if [[ -f "$ROOT_DIR/ol/README.md" ]]; then
   if grep -Fq "ol/manifest.tsv" "$ROOT_DIR/ol/README.md"; then
-    echo "[PASS][SHOULD] ol/README.md documents manifest path"
+    echo "[PASS][SHOULD] ol/README.md documents public manifest path"
   else
-    warn "ol/README.md should document manifest path"
+    warn "ol/README.md should document public manifest path"
   fi
 else
   warn "ol/README.md should exist"

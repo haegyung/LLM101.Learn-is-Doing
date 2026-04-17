@@ -3,6 +3,7 @@
 # Keep lesson starter templates clean; student outputs stay local.
 **/outputs/*.md
 **/notes/*.md
+/.ops/
 
 !**/outputs/.gitkeep
 !**/notes/.gitkeep
