@@ -5,7 +5,7 @@
 # 문서 기준
 - course 공통 안내는 `../../README.md` 이다.
 - 현재 lesson 실행 가이드는 `README.md` 이다.
-- 기준 학습 문서는 `../../../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-student-workflow.md` 이다.
+- 기준 학습 문서는 `../../canonical/markdown/tutorial-gemini-cli-student-workflow.md` 이다.
 
 # 현재 lesson의 목표
 - skill을 `재사용 가능한 agent capability`로 이해하게 돕는다.

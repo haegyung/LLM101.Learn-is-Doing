@@ -1,0 +1,30 @@
+Documentation and instructional content in this repository are licensed under
+the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International
+License (CC BY-NC-ND 4.0).
+
+You are free to:
+- Share — copy and redistribute the material in any medium or format
+
+Under the following terms:
+- Attribution — You must give appropriate credit, provide a link to the
+  license, and indicate if changes were made.
+- NonCommercial — You may not use the material for commercial purposes.
+- NoDerivatives — If you remix, transform, or build upon the material, you may
+  not distribute the modified material.
+- No additional restrictions — You may not apply legal terms or technological
+  measures that legally restrict others from doing anything the license
+  permits.
+
+License URL:
+https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+Scope:
+- Applies to documentation and instructional content, including course guides,
+  lesson text, workshop text, OL bridge text, and Markdown-based learning
+  materials in this repository unless a file states otherwise.
+- Source code, shell scripts, automation assets, and configuration examples are
+  not relicensed by this notice unless a file states otherwise.
+
+Recommended attribution:
+"LLM101.Doing-is-Learning" by the repository authors, licensed under CC
+BY-NC-ND 4.0.

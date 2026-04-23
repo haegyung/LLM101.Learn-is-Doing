@@ -49,7 +49,7 @@ course 공통 안내는 상위 폴더의 `../../README.md`를 보고, 현재 les
 ## 3. 기준 학습 문서와 기본 연습 과제
 
 기준 학습 문서:
-- [학생 실습용: Gemini CLI 작업 워크플로](../../../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-student-workflow.md)
+- [학생 실습용: Gemini CLI 작업 워크플로](../../canonical/markdown/tutorial-gemini-cli-student-workflow.md)
 
 공유 공식 가이드:
 - [skill-as-agent shared guide](../../knol/agent-skills/skill-as-agent-shared-guide.md)

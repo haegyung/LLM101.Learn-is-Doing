@@ -29,7 +29,7 @@
 | `lesson-hub` | `LLM101.Learn-is-Doing Lesson` | `ol/pages/lesson-hub.md` | `README.md`, `PROJECT_DEFINITION.md`, `LESSON_TEMPLATE.md` |
 | `lesson-1` | `Lesson 1. 스킬을 활용해 리서치부터 글쓰기까지` | `ol/pages/lesson-1.md` | `lessons/lesson-1-research-writing/README.md` |
 | `lesson-2` | `Lesson 2. Skill을 에이전트처럼 이해하고 내 과제에 맞게 remix하기` | `ol/pages/lesson-2.md` | `lessons/lesson-2-remix-skill-and-command/README.md`, `lessons/lesson-2-remix-skill-and-command/notes/progress-log.md`, `knol/agent-skills/skill-as-agent-shared-guide.md` |
-| `workshop-90min-15` | `Workshop (90분 / 15명) 운영 패키지` | `ol/pages/workshop-90min-15.md` | `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md`, `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-90min-run-sheet.md`, `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-90min-student-handout.md`, `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-d-1-preflight.md` |
+| `workshop-90min-15` | `Workshop (90분 / 15명) 운영 패키지` | `ol/pages/workshop-90min-15.md` | `canonical/markdown/workshop-materials.md`, `canonical/markdown/workshop-90min-run-sheet.md`, `canonical/markdown/workshop-90min-student-handout.md`, `canonical/markdown/workshop-d-1-preflight.md` |
 
 ## Update Sequence
 

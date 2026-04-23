@@ -70,6 +70,7 @@ check_file "scripts/validate_vibeworkers_ol.sh"
 check_file "scripts/run_quality_gate.sh"
 check_dir "lessons"
 check_dir "ol"
+check_dir "canonical/markdown"
 check_absent_dir "workshop"
 
 echo
@@ -80,10 +81,10 @@ else
   fail "root README does not reference project definition"
 fi
 
-if grep -Fq "../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md" "$ROOT_DIR/README.md"; then
-  pass "root README references docs workshop index"
+if grep -Fq "./canonical/markdown/workshop-materials.md" "$ROOT_DIR/README.md"; then
+  pass "root README references canonical workshop index"
 else
-  fail "root README does not reference docs workshop index"
+  fail "root README does not reference canonical workshop index"
 fi
 
 if grep -Fq "./workshop/README.md" "$ROOT_DIR/README.md"; then
@@ -213,15 +214,15 @@ done
 
 echo
 echo "== Validate workshop docs direct references =="
-check_file "../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md"
-check_file "../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-90min-run-sheet.md"
-check_file "../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-90min-student-handout.md"
-check_file "../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-d-1-preflight.md"
+check_file "canonical/markdown/workshop-materials.md"
+check_file "canonical/markdown/workshop-90min-run-sheet.md"
+check_file "canonical/markdown/workshop-90min-student-handout.md"
+check_file "canonical/markdown/workshop-d-1-preflight.md"
 
-if grep -Fq "../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md" "$ROOT_DIR/PROJECT_DEFINITION.md"; then
-  pass "project definition references docs workshop SoT"
+if grep -Fq "canonical/markdown/workshop-materials.md" "$ROOT_DIR/PROJECT_DEFINITION.md"; then
+  pass "project definition references canonical workshop SoT"
 else
-  fail "project definition does not reference docs workshop SoT"
+  fail "project definition does not reference canonical workshop SoT"
 fi
 
 echo

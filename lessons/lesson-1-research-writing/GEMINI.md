@@ -8,7 +8,7 @@
 ## 문서 구조
 - course 공통 안내는 `../../README.md`를 기준으로 본다.
 - 현재 lesson의 목표, 기본 연습 과제, 시나리오, command 예시는 현재 폴더의 `README.md`를 기준으로 본다.
-- 기준 학습 문서는 `../../../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-student-workflow.md` 이다.
+- 기준 학습 문서는 `../../canonical/markdown/tutorial-gemini-cli-student-workflow.md` 이다.
 
 ## 목적
 - 나는 대학생의 실제 과제, 발표, 학습 작업을 덜 막히게 만들기 위해 Gemini CLI를 사용한다.

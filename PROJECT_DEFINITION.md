@@ -2,7 +2,15 @@
 
 ## 한 줄 정의
 
-`LLM101.Learn-is-Doing`은 튜토리얼 시리즈 이름이고, 현재 tools workspace `LLM101.tools.Learn-is-doing/`는 [`tutorial-gemini-cli-student-workflow.md`](../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-student-workflow.md) 의 학생 실습 흐름을 lesson 단위 실행 자산으로 옮긴 대학생용 workflow 스타터팩이며, docs workshop 정본을 직접 참조하는 운영 경로와 VibeWorkers OL 연동 정본을 함께 포함한다.
+`LLM101.Learn-is-Doing`은 튜토리얼 시리즈 이름이고, 현재 tools workspace `LLM101.tools.Learn-is-doing/`는 [`tutorial-gemini-cli-student-workflow.md`](canonical/markdown/tutorial-gemini-cli-student-workflow.md) 의 학생 실습 흐름을 lesson 단위 실행 자산으로 옮긴 대학생용 workflow 스타터팩이며, repo 내부 canonical workshop 정본과 VibeWorkers OL 연동 정본을 함께 포함한다.
+
+## 공개 배포 원칙
+
+- 이 저장소는 외부 공개용 lesson 누적 repo로 운영한다.
+- 학습자는 repo를 그대로 clone해서 lesson과 예제를 자기 학습 흐름에 재사용할 수 있어야 한다.
+- 문서와 lesson 본문, workshop 본문, OL 브리지 본문은 `CC BY-NC-ND 4.0` 기준으로 배포한다.
+- 키, 토큰, private doc id, private url id, collection id 같은 운영 메타데이터는 공개 repo에 포함하지 않는다.
+- VibeWorkers OL은 이 repo의 지식을 연결하는 브리지이며, 로컬 lesson 정본을 대체하는 원본 저장소가 아니다.
 
 ## 프로젝트가 해결하려는 문제
 
@@ -77,7 +85,7 @@
 - lesson 템플릿
 - lesson 1: student task workflow 실행
 - lesson 2: skill-as-agent remix
-- docs 기준 workshop 운영 문서 direct reference
+- repo 내부 canonical workshop 운영 문서
 - VibeWorkers OL bridge 문서와 인벤토리
 - 합본 문서 생성 스크립트
 - course / OL 자동 검증 스크립트
@@ -97,7 +105,7 @@
 - 최소 1개의 작업 산출물을 `outputs/`에 남길 수 있다.
 - 결과를 보고 `GEMINI.md`, `SKILL.md`, command 중 하나를 1회 이상 수정할 수 있다.
 - Lesson 2 수준에서는 command에 있던 orchestration 로직을 `SKILL.md`로 끌어올린 `orchestration-agent` 예시 1개를 남길 수 있다.
-- 운영자는 `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md`에서 90분 워크숍 패키지를 바로 열 수 있다.
+- 운영자는 `canonical/markdown/workshop-materials.md`에서 90분 워크숍 패키지를 바로 열 수 있다.
 - `ol/manifest.tsv`와 `ol/pages/*.md`가 로컬 정본과 연결된 상태로 로컬 검증을 통과할 수 있다.
 - 필요하면 같은 workflow를 `Codex` 또는 `Claude Code` 구조로 옮길 수 있다.
 
@@ -113,6 +121,6 @@
 - quality gate SoT: `scripts/run_quality_gate.sh`
 - lesson 실행 SoT: 각 lesson 폴더의 `README.md`
 - runtime 규칙 SoT: 각 lesson 폴더의 `GEMINI.md`
-- workshop SoT: `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md`, `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-*.md`
+- workshop SoT: `canonical/markdown/workshop-materials.md`, `canonical/markdown/workshop-*.md`
 - VibeWorkers OL SoT: `ol/README.md`, `ol/manifest.tsv`, `ol/pages/*.md`
-- 기준 학습 문서 SoT: `../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-student-workflow.md`
+- 기준 학습 문서 SoT: `canonical/markdown/tutorial-gemini-cli-student-workflow.md`

@@ -1,15 +1,23 @@
 # LLM101.Learn-is-Doing
 
-이 폴더는 `LLM101.Learn-is-Doing` 튜토리얼 시리즈의 tools 정본(course root)입니다.  
-시리즈 이름은 `LLM101.Learn-is-Doing`이고, 현재 tools workspace의 실제 경로는 `LLM101.tools.Learn-is-doing/`입니다.  
+이 폴더는 `LLM101.Learn-is-Doing` 튜토리얼 시리즈의 tools 정본(course root)입니다.
+시리즈 이름은 `LLM101.Learn-is-Doing`이고, 현재 tools workspace의 실제 경로는 `LLM101.tools.Learn-is-doing/`입니다.
 기준 문서인 학생 실습용 Gemini CLI 튜토리얼을 lesson 단위 실행 자산으로 다시 정리해 둔 workspace입니다.
+
+## 공개 사용 기준
+
+- 이 저장소는 외부 공개용 학습 repo입니다.
+- 학습자는 이 repo를 그대로 clone해서 자신의 LLM 학습과 과제 실험에 사용할 수 있어야 합니다.
+- 문서와 lesson 본문, workshop 본문, OL 브리지 본문은 [CC BY-NC-ND 4.0](./LICENSE) 기준으로 배포합니다.
+- 비공개 운영 메타데이터, 키, 토큰, 문서 ID 같은 값은 repo에 포함하지 않습니다.
+- `ol/`은 lesson 본문을 대체하는 저장소가 아니라, 이 repo의 지식을 VibeWorkers OL에 연결하는 브리지 계층입니다.
 
 현재 포함된 lesson:
 - [Lesson 1. 스킬을 활용해서 리서치부터 글쓰기까지](./lessons/lesson-1-research-writing/README.md)
 - [Lesson 2. Skill을 에이전트처럼 이해하고 내 과제에 맞게 remix하기](./lessons/lesson-2-remix-skill-and-command/README.md)
 
 워크숍 운영 문서:
-- [Workshop Materials](../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md)
+- [Workshop Materials](./canonical/markdown/workshop-materials.md)
 
 VibeWorkers OL 연동 문서:
 - [VibeWorkers OL System](./ol/README.md)
@@ -18,11 +26,11 @@ VibeWorkers OL 연동 문서:
 - [PROJECT_DEFINITION.md](./PROJECT_DEFINITION.md)
 
 기준 학습 문서:
-- [학생 실습용: Gemini CLI 작업 워크플로](../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-student-workflow.md)
+- [학생 실습용: Gemini CLI 작업 워크플로](./canonical/markdown/tutorial-gemini-cli-student-workflow.md)
 
 교재/심화 문서:
-- [Gemini CLI 실습 교재 (MD 구조화 버전)](../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-textbook.md)
-- [학생 Task 중심 Gemini CLI 튜토리얼 (긴 버전)](../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-structured.md)
+- [Gemini CLI 실습 교재 (MD 구조화 버전)](./canonical/markdown/tutorial-gemini-cli-textbook.md)
+- [학생 Task 중심 Gemini CLI 튜토리얼 (긴 버전)](./canonical/markdown/tutorial-gemini-cli-structured.md)
 
 공유 공식 가이드 허브:
 - [knol/agent-skills/skill-as-agent-shared-guide.md](./knol/agent-skills/skill-as-agent-shared-guide.md)
@@ -48,7 +56,8 @@ VibeWorkers OL 연동 문서:
 - 학생-facing 문서에서 낯선 전문 용어나 기술 용어가 나오면, 처음 등장할 때 쉬운 말로 바로 풀어 쓰거나 짧은 용어 풀이를 붙입니다.
 - `Gemini CLI`, `Codex`, `Claude Code`를 별도 커리큘럼으로 나누지 않고, 같은 workflow와 산출물 구조를 유지한 채 필요한 차이만 따로 안내합니다.
 - runtime별 skill 구조 차이는 `./knol/agent-skills/`의 공유 요약을 기준으로 통일합니다.
-- publishable workshop 운영 문서는 `../LLM101.docs.Learn-is-doing/canonical/markdown/`을 정본으로 두고, tools repo는 별도 `workshop/` 미러를 두지 않고 이 경로를 직접 참조합니다.
+- publishable workshop 운영 문서는 `./canonical/markdown/`을 정본으로 두고, tools repo 안에서 직접 참조합니다.
+- 문서 라이선스는 `CC BY-NC-ND 4.0`을 기준으로 유지하고, lesson이 늘어나더라도 공개용 문서 표면에는 비공개 운영 메타를 넣지 않습니다.
 
 ## 0-1. 낯선 용어를 읽는 기본 규칙
 
@@ -71,7 +80,7 @@ VibeWorkers OL 연동 문서:
 
 ## 1. 가장 짧은 시작 순서
 
-1. 기준 학습 문서 [`tutorial-gemini-cli-student-workflow.md`](../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-student-workflow.md) 를 한 번 읽습니다.
+1. 기준 학습 문서 [`tutorial-gemini-cli-student-workflow.md`](./canonical/markdown/tutorial-gemini-cli-student-workflow.md) 를 한 번 읽습니다.
 2. 현재 작업 폴더가 git repo 라면 먼저 `git status -sb`로 상태를 확인합니다. working tree가 깨끗하고 `origin` 원격이 있을 때만 `git fetch origin`, `git pull --ff-only`를 실행합니다. 로컬 변경이 있거나 원격이 없으면 sync 단계는 건너뛰고 현재 상태만 기록합니다.
 3. 이번 주에 실제로 해야 하는 작업 1개를 문장으로 적습니다.
 4. `lessons/lesson-1-research-writing/` 폴더를 현재 작업 환경으로 import 합니다.
@@ -174,9 +183,9 @@ VibeWorkers OL 연동 문서:
 - lesson 2 본문 SoT: `lessons/lesson-2-remix-skill-and-command/README.md`
 - lesson 2 runtime 규칙 SoT: `lessons/lesson-2-remix-skill-and-command/GEMINI.md`
 - lesson 2 진행 로그 SoT: `lessons/lesson-2-remix-skill-and-command/notes/progress-log.md`
-- 기준 학습 문서 SoT: `../LLM101.docs.Learn-is-doing/canonical/markdown/tutorial-gemini-cli-student-workflow.md`
+- 기준 학습 문서 SoT: `canonical/markdown/tutorial-gemini-cli-student-workflow.md`
 - shared agent-skills guide SoT: `knol/agent-skills/skill-as-agent-shared-guide.md`
-- workshop publishable SoT: `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md`
+- workshop publishable SoT: `canonical/markdown/workshop-materials.md`
 - OL bridge SoT: `ol/README.md`
 - OL inventory SoT: `ol/manifest.tsv`
 - OL page contracts SoT: `ol/pages/*.md`
@@ -213,7 +222,8 @@ LLM101.tools.Learn-is-doing/
 │       ├── .gemini/
 │       ├── outputs/
 │       └── notes/
-└── ../LLM101.docs.Learn-is-doing/canonical/markdown/
+└── canonical/
+    └── markdown/
     ├── workshop-materials.md
     ├── workshop-90min-run-sheet.md
     ├── workshop-90min-student-handout.md

@@ -2,7 +2,7 @@
 
 ## 1. Goal
 
-`LLM101.Learn-is-Doing` 저장소를 `course root + lesson 실행 자산 + docs direct workshop reference + VibeWorkers OL 연동 정본 + 자동 검증`이 모두 닫힌 상태로 유지해, 변경 후에도 한 번의 품질 게이트 실행으로 완료/미완료를 판정할 수 있게 한다.
+`LLM101.Learn-is-Doing` 저장소를 `course root + lesson 실행 자산 + repo 내부 canonical workshop/tutorial docs + VibeWorkers OL 연동 정본 + 자동 검증`이 모두 닫힌 상태로 유지해, 변경 후에도 한 번의 품질 게이트 실행으로 완료/미완료를 판정할 수 있게 한다.
 
 검증 가능한 완료 조건:
 - `bash scripts/run_quality_gate.sh` 실행 결과가 `PASS`(exit code 0)여야 한다.
@@ -16,7 +16,7 @@
 - Evidence: `scripts/validate_course.sh`
 
 2. 루트 `README.md`가 GitHub 진입 문서 역할을 하며 핵심 경로를 모두 가리킨다.
-- 대상 링크: `PROJECT_DEFINITION.md`, `lessons/*/README.md`, `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md`, `ol/README.md`
+- 대상 링크: `PROJECT_DEFINITION.md`, `lessons/*/README.md`, `./canonical/markdown/workshop-materials.md`, `ol/README.md`
 - Evidence: `scripts/validate_course.sh`
 
 3. 모든 lesson 폴더가 실행 최소 자산을 가진다.
@@ -27,8 +27,8 @@
 - 대상: `GEMINI.md`, `.gemini/skills/*/SKILL.md`, `.gemini/commands/**/*.toml`, `outputs/.gitkeep`, `notes/.gitkeep`
 - Evidence: `scripts/validate_course.sh`
 
-5. workshop publishable SoT가 docs workspace에 존재하고 tools 루트에서 직접 연결된다.
-- 대상: `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md`, `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-90min-run-sheet.md`, `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-90min-student-handout.md`, `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-d-1-preflight.md`
+5. workshop publishable SoT가 repo 내부 canonical workspace에 존재하고 tools 루트에서 직접 연결된다.
+- 대상: `canonical/markdown/workshop-materials.md`, `canonical/markdown/workshop-90min-run-sheet.md`, `canonical/markdown/workshop-90min-student-handout.md`, `canonical/markdown/workshop-d-1-preflight.md`
 - Evidence: `scripts/validate_course.sh`
 
 6. VibeWorkers OL 연동 정본이 존재하고 인벤토리/계약/상위 문서 매핑이 유효하다.
@@ -85,7 +85,7 @@
 ## 3. Sequence-Dependent Completion Plan (R->P->M->W->A)
 
 ### R1
-- Objective: 저장소 전체 기능 범위(course, lessons, docs direct workshop reference, OL bridge, gate)를 하나의 완료 기준으로 닫는다.
+- Objective: 저장소 전체 기능 범위(course, lessons, repo-internal canonical docs, OL bridge, gate)를 하나의 완료 기준으로 닫는다.
 
 ### P1 Requirements Sync
 - M1: 기능 범위와 판정 조건을 단일 문서로 고정
@@ -102,7 +102,7 @@
 ### P3 Validation Coverage
 - M3: 요구사항이 문서 선언에서 끝나지 않고 자동 검증으로 판정 가능
 - W4: `scripts/validate_course.sh` 확장
-- A4: root entry docs, docs workshop source paths, README 진입 링크를 검사
+- A4: root entry docs, canonical workshop source paths, README 진입 링크를 검사
 - W5: `scripts/validate_vibeworkers_ol.sh` 유지/보강
 - A5: manifest / page contract / upstream mapping 판정 기준을 유지
 

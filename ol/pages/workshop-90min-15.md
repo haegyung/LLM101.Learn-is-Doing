@@ -12,10 +12,10 @@
 
 ## Upstream Publishable SoT
 
-- `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-materials.md`
-- `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-90min-run-sheet.md`
-- `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-90min-student-handout.md`
-- `../LLM101.docs.Learn-is-doing/canonical/markdown/workshop-d-1-preflight.md`
+- `canonical/markdown/workshop-materials.md`
+- `canonical/markdown/workshop-90min-run-sheet.md`
+- `canonical/markdown/workshop-90min-student-handout.md`
+- `canonical/markdown/workshop-d-1-preflight.md`
 
 ## Must Sections
 
@@ -36,8 +36,8 @@
 - PASS 기준은 `research 1개 + draft/revision 1개 + what-i-changed 1개`
 - git preflight 순서는 hub/lesson과 동일해야 한다
 - 검증 명령은 `bash scripts/run_workspace_gate.sh tools-only`
-- publishable workshop SoT 경로는 docs `canonical/markdown/` 아래 문서들이다
-- tools repo는 workshop 로컬 미러를 두지 않고 docs 정본을 직접 참조한다
+- publishable workshop SoT 경로는 repo 내부 `canonical/markdown/` 아래 문서들이다
+- tools repo는 workshop 로컬 미러를 따로 두지 않고 repo 내부 canonical 정본을 직접 참조한다
 
 ## Remote Snapshot Notes
 
